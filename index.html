@@ -19,6 +19,11 @@
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Define a rolagem nativa do navegador como suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -257,6 +262,8 @@
             padding: 160px 10%;
             position: relative;
             z-index: 2;
+            /* Margem de segurança para o link direto das Soluções */
+            scroll-margin-top: 5vh;
         }
 
         .section-header {
@@ -545,8 +552,6 @@
         </div>
         <nav>
             <a href="#solucoes">Soluções</a>
-            <a href="#zenith-go">ZENITH GO</a>
-            <a href="#zenith-warehouse">ZENITH WAREHOUSE</a>
         </nav>
     </header>
 
@@ -658,10 +663,8 @@
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Verifica se o elemento está vindo de baixo para cima (rolagem natural para baixo)
-                    if (entry.boundingClientRect.top > 0) {
-                        entry.target.classList.add('active');
-                    }
+                    // Garante a ativação da animação
+                    entry.target.classList.add('active');
                 }
             });
         }, observerOptions);
