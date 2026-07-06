@@ -547,7 +547,6 @@
             <a href="#solucoes">Soluções</a>
             <a href="#zenith-go">ZENITH GO</a>
             <a href="#zenith-warehouse">ZENITH WAREHOUSE</a>
-            <a href="#contato">Contato</a>
         </nav>
     </header>
 
@@ -610,7 +609,7 @@
         </div>
     </section>
 
-    <footer id="contato">
+    <footer>
         <div class="footer-main">
             <div class="footer-brand">
                 <h2>ZENITH</h2>
@@ -618,7 +617,7 @@
             </div>
             <div class="footer-address">
                 <p>Engenharia de Softwares & Integrações</p>
-                <p><a href="https://zntlabs.com.br" target="_blank">zntlabs.com.br</a></p>
+                <p><a href="mailto:contato@zntlabs.com.br">contato@zntlabs.com.br</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -628,6 +627,12 @@
     </footer>
 
     <script>
+        // Força a página a carregar no topo e desativa a restauração automática de scroll do navegador
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
         const reveals = document.querySelectorAll('.reveal');
 
         window.addEventListener('scroll', () => {
