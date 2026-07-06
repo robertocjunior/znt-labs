@@ -1,8 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Inicialização do Lenis Smooth Scroll
+    
+    // 1. Injeção Automática de Strings da Configuração
+    function renderTexts() {
+        const textElements = document.querySelectorAll('[data-text]');
+        
+        textElements.forEach(element => {
+            const path = element.getAttribute('data-text');
+            // Resolve caminhos aninhados (ex: "SOLUCOES.ITEMS.GO.TITLE")
+            const text = path.split('.').reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : null, CONFIG);
+            
+            if (text !== null) {
+                element.textContent = text;
+            }
+        });
+    }
+    renderTexts();
+
+    // 2. Inicialização do motor Lenis (Smooth Scroll)
     const lenis = new Lenis({
         duration: 1.3,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva exponencial customizada
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
@@ -16,13 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     requestAnimationFrame(raf);
 
-    // Sincronização e reset inicial
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
     lenis.scrollTo(0, { immediate: true });
 
-    // 2. Gerenciamento do Scroll (Barra de Progresso e Animações)
+    // 3. Controle da Barra de Progresso e Reset do Reveal
     const progressBar = document.getElementById('progressBar');
     const reveals = document.querySelectorAll('.reveal');
 
@@ -35,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
             progressBar.style.width = scrolled + '%';
         }
 
-        // Reseta animações ao voltar para o topo absoluto
         if (winScroll <= 15) {
             reveals.forEach(element => {
                 element.classList.remove('active');
@@ -43,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Triggers de Scroll Suave (Cliques da Interface)
+    // 4. Triggers de Scroll Suave para as Âncoras
     const navLogo = document.getElementById('navLogo');
     if (navLogo) {
         navLogo.addEventListener('click', () => {
@@ -67,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. Intersection Observer para Reveal dos Elementos
+    // 5. Intersection Observer para Animações Reveal
     const observerOptions = {
         root: null,
         threshold: 0.08,
@@ -88,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         revealObserver.observe(element);
     });
 
-    // 5. Efeito Parallax Sutil no Glow com o Mouse
+    // 6. Efeito Parallax Sutil no Glow com o Mouse
     document.addEventListener('mousemove', (e) => {
         const glow = document.querySelector('.ambient-glow');
         if (glow) {
