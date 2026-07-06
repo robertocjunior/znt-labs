@@ -35,6 +35,12 @@
             pointer-events: none;
         }
 
+        /* Suporte universal para Firefox e padrões modernos de Scrollbar */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(246, 248, 247, 0.2) var(--primary);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -51,19 +57,24 @@
             letter-spacing: -0.01em;
         }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar (Blink/WebKit - Chrome, Safari, Edge, Opera, iOS, Android) */
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
             background: var(--primary);
         }
         ::-webkit-scrollbar-thumb {
             background: rgba(246, 248, 247, 0.2);
-            border-radius: 4px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
         }
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(246, 248, 247, 0.4);
+        }
+        ::-webkit-scrollbar-corner {
+            background: var(--primary);
         }
 
         /* Fluid Premium Background Noise & Lights */
@@ -645,7 +656,7 @@
                 <h2 class="section-title">Infraestrutura sob medida</h2>
             </div>
             <div class="about-text">
-                <p>Na ZENITH LABS, projetamos arquiteturas escaláveis, barramentos de microsserviços rápidos e integrações robustas que eliminam o atrito operacional.</p>
+                <p>Na ZENITH LABS, projetamos arquitecturas escaláveis, barramentos de microsserviços rápidos e integrações robustas que eliminam o atrito operacional.</p>
                 <p>Nossa filosofia de design foca em interfaces ultra limpas, desempenho nativo e estabilidade de missão crítica.</p>
             </div>
         </div>
