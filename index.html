@@ -198,20 +198,6 @@
             z-index: -1;
         }
 
-        .star-blink {
-            animation: twinkle 4s infinite ease-in-out;
-            opacity: 0.15;
-        }
-        .star-blink-delayed {
-            animation: twinkle 5s infinite ease-in-out 1.5s;
-            opacity: 0.1;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.08; transform: scale(0.95); }
-            50% { opacity: 0.35; transform: scale(1.05); }
-        }
-
         .hero-slogan {
             font-family: var(--font-slogan);
             font-optical-sizing: auto;
@@ -578,10 +564,34 @@
     </header>
 
     <section class="hero">
-        <svg class="hero-vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" fill="none">
-            <path d="M-100 750L350 520L720 680L1200 450L1600 720" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" stroke-dasharray="4 4" />
-            <path d="M-50 780L420 480L800 710L1280 410L1550 690" stroke="#F6F8F7" stroke-width="1.5" stroke-opacity="0.03" />
-        </</svg>
+        <!-- Elementos SVG Técnicos e Minimalistas de Preenchimento Arquitetônico -->
+        <svg class="hero-vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+            <!-- Linhas de Grade de Enquadramento Periférico -->
+            <line x1="80" y1="0" x2="80" y2="900" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+            <line x1="1360" y1="0" x2="1360" y2="900" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+            <line x1="0" y1="120" x2="1440" y2="120" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+            <line x1="0" y1="780" x2="1440" y2="780" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+
+            <!-- Micro-cruzes (+) de Precisão Matemática (Âncoras) -->
+            <path d="M75 120H85M80 115V125" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+            <path d="M1355 120H1365M1360 115V125" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+            <path d="M75 780H85M80 775V785" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+            <path d="M1355 780H1365M1360 775V785" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+            
+            <path d="M715 450H725M720 445V455" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.1"/>
+
+            <!-- Linhas de Dados Horizontais com Marcador Terminal -->
+            <line x1="80" y1="280" x2="240" y2="280" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.08" />
+            <circle cx="240" cy="280" r="2" fill="#F6F8F7" fill-opacity="0.3" />
+
+            <line x1="1200" y1="620" x2="1360" y2="620" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.08" />
+            <circle cx="1200" cy="620" r="2" fill="#F6F8F7" fill-opacity="0.3" />
+
+            <!-- Tipografia Vetorial Interna de Coordenadas Táticas -->
+            <text x="95" y="145" fill="#F6F8F7" fill-opacity="0.2" font-family="monospace" font-size="10" letter-spacing="1">SYS.INIT // 2026</text>
+            <text x="1275" y="145" fill="#F6F8F7" fill-opacity="0.2" font-family="monospace" font-size="10" letter-spacing="1">LN_01 // 45.02</text>
+            <text x="95" y="765" fill="#F6F8F7" fill-opacity="0.2" font-family="monospace" font-size="10" letter-spacing="1">LOC.ZNT // BR</text>
+        </svg>
 
         <div class="hero-slogan">REACH THE TOP</div>
         <h1 class="hero-title">ZENITH</h1>
@@ -606,7 +616,7 @@
                 <div class="product-meta">
                     <span class="product-badge">Integração ERP</span>
                     <h3>ZENITH GO</h3>
-                    <p>A mais poderosa plataforma de integration fluida e de alto desempenho projetada especificamente para o ecossistema Sankhya. Automatize fluxos de dados complexos com estabilidade cirúrgica.</p>
+                    <p>A mais poderosa plataforma de integração fluida e de alto desempenho projetada especificamente para o ecossistema Sankhya. Automatize fluxos de dados complexos com estabilidade cirúrgica.</p>
                 </div>
                 <div class="product-img-wrapper">
                     <div class="product-img-placeholder">Mockup ZENITH GO (800x440)</div>
