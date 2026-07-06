@@ -400,7 +400,7 @@ nav a:hover::after {
 .product-img-wrapper {
     margin-top: 40px;
     width: 100%;
-    height: 220px;
+    height: 300px;
     border-radius: 14px;
     background: rgba(0, 0, 0, 0.2);
     overflow: hidden;
