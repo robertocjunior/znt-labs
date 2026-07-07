@@ -206,10 +206,14 @@ nav a:hover::after {
     font-size: 14px;
     letter-spacing: 12px;
     text-transform: uppercase;
-    margin-bottom: 20px;
     opacity: 0.5;
     transform: translateY(30px);
     animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: inline-block;
+    
+    /* CALIBRAÇÃO DA ÁREA: Pequena em cima e nas laterais, mas esticada para baixo */
+    padding: 6px 12px 35px 12px; 
+    margin-bottom: -15px; /* Compensa o padding de baixo para não empurrar o título ZENITH */
 }
 
 .hero-title {
@@ -555,6 +559,8 @@ footer {
     .hero-slogan {
         font-size: 11px;
         letter-spacing: 6px;
+        padding: 10px 0;
+        margin-bottom: 0;
     }
     .section {
         padding: 100px 24px;
