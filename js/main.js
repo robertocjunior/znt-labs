@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 7. Lógica do Cursor Customizado com Modo Debug Integrado e Arquivo Externo
+    // 7. Lógica Dinâmica do Cursor Customizado com Rótulos de Debug Inline
     const cursor = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.custom-cursor-dot');
 
@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const speed = 0.15;
     let initialized = false;
 
-    // Elementos visuais de Debug
     let debugContainers = [];
 
     function updatePosition(e) {
@@ -160,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const interactiveElements = document.querySelectorAll('a, button, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .znt-hover-target, .about-text p');
 
-        // Limpa containers de debug antigos do frame anterior se o modo debug estiver ativado
         if (CONFIG.CURSOR_DEBUG) {
             debugContainers.forEach(div => div.remove());
             debugContainers = [];
@@ -170,19 +168,32 @@ document.addEventListener("DOMContentLoaded", () => {
             const rect = el.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) return;
 
-            // Busca se existe tolerância específica externa configurada para o elemento no arquivo config.js
             let padding = { top: 0, right: 0, bottom: 0, left: 0 };
+            let identifiedSelector = "";
             
             if (CONFIG.CURSOR_TOLERANCE) {
                 for (const selector in CONFIG.CURSOR_TOLERANCE) {
                     if (el.matches(selector)) {
                         padding = CONFIG.CURSOR_TOLERANCE[selector];
+                        identifiedSelector = selector;
                         break;
                     }
                 }
             }
 
-            // Calcula a nova caixa expandida baseada na configuração externa
+            // Se não bateu com nenhum seletor do config, gera um nome amigável para debug baseado nas classes ou tag
+            if (!identifiedSelector) {
+                if (el.className) {
+                    identifiedSelector = "." + Array.from(el.classList).join('.');
+                } else {
+                    identifiedSelector = el.tagName.toLowerCase();
+                }
+            }
+
+            // Descobre se tem chave de tradução associada para exibir junto ao nome
+            const dataTextAttr = el.getAttribute('data-text');
+            const debugLabelText = dataTextAttr ? `${identifiedSelector} [${dataTextAttr}]` : identifiedSelector;
+
             const expandedRect = {
                 left: rect.left - (padding.left || 0),
                 right: rect.right + (padding.right || 0),
@@ -190,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 bottom: rect.bottom + (padding.bottom || 0)
             };
 
-            // Desenha os retângulos vermelhos na tela se estiver em Modo Debug
             if (CONFIG.CURSOR_DEBUG && initialized) {
                 const debugDiv = document.createElement('div');
                 debugDiv.style.position = 'fixed';
@@ -202,11 +212,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 debugDiv.style.top = `${expandedRect.top}px`;
                 debugDiv.style.width = `${expandedRect.right - expandedRect.left}px`;
                 debugDiv.style.height = `${expandedRect.bottom - expandedRect.top}px`;
+
+                // Cria o rótulo com texto descritivo inline
+                const label = document.createElement('span');
+                label.style.position = 'absolute';
+                label.style.top = '-16px';
+                label.style.left = '0';
+                label.style.backgroundColor = '#ff4a4a';
+                label.style.color = '#ffffff';
+                label.style.fontFamily = 'monospace';
+                label.style.fontSize = '9px';
+                label.style.padding = '2px 5px';
+                label.style.borderRadius = '3px 3px 0 0';
+                label.style.whiteSpace = 'nowrap';
+                label.textContent = debugLabelText;
+                
+                debugDiv.appendChild(label);
                 document.body.appendChild(debugDiv);
                 debugContainers.push(debugDiv);
             }
 
-            // Realiza o cálculo físico preciso contra as áreas configuradas no arquivo externo
             const closestX = Math.max(expandedRect.left, Math.min(ballX, expandedRect.right));
             const closestY = Math.max(expandedRect.top, Math.min(ballY, expandedRect.bottom));
 
