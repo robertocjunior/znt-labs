@@ -339,10 +339,8 @@ nav a:hover::after {
     min-height: 550px;
     position: relative;
     overflow: hidden;
-    /* Efeitos de cursor padrão removidos daqui */
 }
 
-/* REMOVIDO: Efeitos de elevação, glow de fundo e gradientes falsos sob os cards */
 .product-card::before {
     content: none;
 }
@@ -393,6 +391,7 @@ nav a:hover::after {
     line-height: 1.7;
     opacity: 0.7;
     max-width: 90%;
+    display: inline-block;
 }
 
 .product-img-wrapper {
@@ -424,7 +423,6 @@ nav a:hover::after {
     object-fit: cover;
 }
 
-/* REMOVIDO: Efeito de zoom na imagem ao passar o mouse */
 .product-card:hover img {
     transform: none;
 }
@@ -597,6 +595,10 @@ footer {
     pointer-events: none;
     z-index: 9999;
     border-radius: 50%;
+    
+    /* MODIFICADO: Começa invisível para evitar o rastro inicial vindo do topo esquerdo */
+    opacity: 0;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
 
 .custom-cursor {
@@ -605,7 +607,6 @@ footer {
     border: 1px solid rgba(246, 248, 247, 0.4);
     background-color: transparent;
     mix-blend-mode: difference;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .custom-cursor-dot {
@@ -613,6 +614,12 @@ footer {
     height: 6px;
     background-color: var(--text-on-primary);
     mix-blend-mode: difference;
+}
+
+/* Classe controlada por JS para exibir o ponteiro de forma elegante ao mover o mouse */
+body.cursor-visible .custom-cursor,
+body.cursor-visible .custom-cursor-dot {
+    opacity: 1;
 }
 
 body.cursor-hover .custom-cursor {
@@ -636,7 +643,7 @@ body.cursor-hover .custom-cursor-dot {
 }
 
 @media (min-width: 969px) {
-    html, body, a, button, .product-img-wrapper, .cta-button, .logo-container {
+    html, body, a, button, .product-img-wrapper, .cta-button, .logo-container, .znt-hover-target {
         cursor: none !important;
     }
 }
