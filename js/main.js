@@ -118,31 +118,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let mouseX = 0, mouseY = 0;
     let ballX = 0, ballY = 0;
-    const speed = 0.15; 
+    const speed = 0.15;
+    let initialized = false;
 
-    window.addEventListener('mousemove', (e) => {
+    // Função centralizada para atualizar as coordenadas e ativar a visibilidade instantânea
+    function updatePosition(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
+
+        if (!initialized) {
+            // Sincroniza o rastro imediatamente no ponto de entrada para evitar lag vindo do topo esquerdo
+            ballX = mouseX;
+            ballY = mouseY;
+            initialized = true;
+            document.body.classList.add('cursor-visible');
+        }
         
         if (cursorDot) {
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
         }
-    });
+    }
+
+    // Escuta tanto a entrada física do mouse quanto qualquer movimentação inicial pela janela
+    document.documentElement.addEventListener('mouseenter', updatePosition);
+    window.addEventListener('mousemove', updatePosition);
 
     function animateCursor() {
-        ballX += (mouseX - ballX) * speed;
-        ballY += (mouseY - ballY) * speed;
-        
-        if (cursor) {
-            cursor.style.left = `${ballX}px`;
-            cursor.style.top = `${ballY}px`;
+        if (initialized) {
+            ballX += (mouseX - ballX) * speed;
+            ballY += (mouseY - ballY) * speed;
+            
+            if (cursor) {
+                cursor.style.left = `${ballX}px`;
+                cursor.style.top = `${ballY}px`;
+            }
         }
 
         let isOverAnyElement = false;
         const cursorRadius = 32.5; 
 
-        // Rastreamento explícito por classe aplicada para isolar totalmente os vazios das caixas das soluções
         const interactiveElements = document.querySelectorAll('a, button, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .znt-hover-target, .about-text p');
 
         interactiveElements.forEach(el => {
