@@ -113,3 +113,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+const cursor = document.querySelector('.custom-cursor');
+const cursorDot = document.querySelector('.custom-cursor-dot');
+
+let mouseX = 0, mouseY = 0;
+let ballX = 0, ballY = 0;
+const speed = 0.15; 
+
+window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    if (cursorDot) {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+    }
+});
+
+function animateCursor() {
+    ballX += (mouseX - ballX) * speed;
+    ballY += (mouseY - ballY) * speed;
+    
+    if (cursor) {
+        cursor.style.left = `${ballX}px`;
+        cursor.style.top = `${ballY}px`;
+    }
+    
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, h1, h2, h3, p, span');
+
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.body.classList.add('cursor-hover');
+    });
+    el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-hover');
+    });
+});
