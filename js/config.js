@@ -1,4 +1,16 @@
 const CONFIG = {
+    // MODO DEBUG DO CURSOR (true = caixas vermelhas visíveis / false = caixas invisíveis)
+    CURSOR_DEBUG: false,
+
+    // CALIBRAÇÃO DAS ÁREAS DE DETECÇÃO (Aumenta a área física de colisão ao redor do elemento)
+    CURSOR_TOLERANCE: {
+        ".hero-slogan": { top: 6, right: 12, bottom: 35, left: 12 },
+        ".hero-title":  { top: 10, right: 10, bottom: 10, left: 10 },
+        ".cta-button":  { top: 5, right: 5, bottom: 5, left: 5 },
+        // Você pode adicionar qualquer seletor aqui para dar tolerâncias personalizadas:
+        ".section-title": { top: 0, right: 0, bottom: 0, left: 0 }
+    },
+
     BRAND: {
         NAME: "ZENITH",
         SLOGAN: "REACH THE TOP"
@@ -7,9 +19,7 @@ const CONFIG = {
         SOLUCOES: "Soluções"
     },
     HERO: {
-        // OPÇÃO 1: Focada na evolução do negócio (Recomendada)
         SUBTITLE: "Elevando o potencial do seu negócio através de tecnologias robustas, automações eficientes e integrações inteligentes.",
-        
         CTA: "Conhecer Soluções",
         INDICATOR: "Scroll para explorar"
     },
