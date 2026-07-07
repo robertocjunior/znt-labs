@@ -225,6 +225,7 @@ nav a:hover::after {
     transform: translateY(40px);
     opacity: 0;
     animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    display: inline-block;
 }
 
 .hero-subtitle {
@@ -290,6 +291,9 @@ nav a:hover::after {
 
 .section-header {
     margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .section-tag {
@@ -302,7 +306,7 @@ nav a:hover::after {
     text-transform: uppercase;
     opacity: 0.5;
     margin-bottom: 15px;
-    display: block;
+    display: inline-block;
 }
 
 .section-title {
@@ -313,6 +317,7 @@ nav a:hover::after {
     font-size: clamp(32px, 4vw, 55px);
     text-transform: uppercase;
     letter-spacing: -1px;
+    display: inline-block;
 }
 
 .product-grid {
@@ -358,6 +363,12 @@ nav a:hover::after {
     opacity: 1;
 }
 
+.product-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .product-meta h3 {
     font-family: var(--font-zenith);
     font-optical-sizing: auto;
@@ -367,9 +378,7 @@ nav a:hover::after {
     letter-spacing: -0.5px;
     margin-bottom: 20px;
     text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    display: inline-block;
 }
 
 .product-badge {
@@ -587,6 +596,7 @@ footer {
         text-align: center;
     }
 }
+
 /* Custom Cursor Style com Efeito Negativo (Inversão) */
 .custom-cursor, .custom-cursor-dot {
     position: fixed;
@@ -598,7 +608,6 @@ footer {
     border-radius: 50%;
 }
 
-/* O círculo externo (Sempre aplicando o efeito de inversão sobre qualquer elemento) */
 .custom-cursor {
     width: 40px;
     height: 40px;
@@ -608,7 +617,6 @@ footer {
     transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* A bolinha interna */
 .custom-cursor-dot {
     width: 6px;
     height: 6px;
@@ -616,8 +624,6 @@ footer {
     mix-blend-mode: difference;
 }
 
-/* Estado de Hover: O círculo expande e fica totalmente branco sólido por dentro.
-   Com o mix-blend-mode, isso faz a área exata sob o círculo ficar com a cor invertida (negativo). */
 body.cursor-hover .custom-cursor {
     width: 65px;
     height: 65px;
@@ -629,7 +635,6 @@ body.cursor-hover .custom-cursor-dot {
     opacity: 0;
 }
 
-/* Remove o cursor customizado em dispositivos móveis e restaura o padrão */
 @media (max-width: 968px) {
     .custom-cursor, .custom-cursor-dot {
         display: none !important;
@@ -639,7 +644,6 @@ body.cursor-hover .custom-cursor-dot {
     }
 }
 
-/* Desativa o cursor padrão do navegador apenas no Desktop */
 @media (min-width: 969px) {
     html, body, a, button, .product-card, .cta-button, .logo-container {
         cursor: none !important;
