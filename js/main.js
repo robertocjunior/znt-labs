@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         textElements.forEach(element => {
             const path = element.getAttribute('data-text');
-            // Resolve caminhos aninhados (ex: "SOLUCOES.ITEMS.GO.TITLE")
             const text = path.split('.').reduce((obj, key) => (obj && obj[key] !== undefined) ? obj[key] : null, CONFIG);
             
             if (text !== null) {
@@ -113,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 7. Lógica Avançada do Cursor Customizado com Cálculo de Área Total de Borda
+    // 7. Lógica Dinâmica e Otimizada do Cursor Customizado
     const cursor = document.querySelector('.custom-cursor');
     const cursorDot = document.querySelector('.custom-cursor-dot');
 
@@ -131,11 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Elementos que ativam a inversão e expansão
-    const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, h1, h2, h3, p, span');
-
     function animateCursor() {
-        // Movimentação fluida baseada na física do rastro (lerp)
         ballX += (mouseX - ballX) * speed;
         ballY += (mouseY - ballY) * speed;
         
@@ -144,16 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
             cursor.style.top = `${ballY}px`;
         }
 
-        // Verifica se a área externa do círculo maior está intersectando qualquer elemento interativo
         let isOverAnyElement = false;
-        
-        // Define o raio máximo do círculo expandido (65px de largura / 2 = 32.5px de raio)
         const cursorRadius = 32.5; 
+
+        // Adicionado .hero-subtitle, .product-card p e .about-text p para mapear cirurgicamente os blocos de texto comuns do layout
+        const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .product-card p, .section-title, .product-meta h3, .about-text p');
 
         interactiveElements.forEach(el => {
             const rect = el.getBoundingClientRect();
 
-            // Calcula se o círculo maior encosta ou está sobre o retângulo do elemento
+            if (rect.width === 0 || rect.height === 0) return;
+
             const closestX = Math.max(rect.left, Math.min(ballX, rect.right));
             const closestY = Math.max(rect.top, Math.min(ballY, rect.bottom));
 
@@ -162,13 +158,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
-            // Se a distância for menor que o raio do círculo, há colisão física real da área
             if (distanceSquared < (cursorRadius * cursorRadius)) {
                 isOverAnyElement = true;
             }
         });
 
-        // Altera o estado do cursor considerando a área total expandida
         if (isOverAnyElement) {
             document.body.classList.add('cursor-hover');
         } else {
