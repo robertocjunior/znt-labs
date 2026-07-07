@@ -534,11 +534,56 @@ footer {
 
 /* Mobile Responsive */
 @media (max-width: 968px) {
-    header { padding: 20px 30px; }
-    nav { display: none; }
-    .product-grid { grid-template-columns: 1fr; gap: 30px; }
-    .about-layout { grid-template-columns: 1fr; gap: 40px; }
-    .footer-main { flex-direction: column; gap: 40px; }
-    .footer-address { text-align: left; }
-    .product-card { padding: 40px; min-height: 450px; }
+    header { 
+        padding: 20px 24px; 
+    }
+    nav { 
+        display: none; 
+    }
+    .hero {
+        padding: 0 24px;
+    }
+    .hero-slogan {
+        font-size: 11px;
+        letter-spacing: 6px;
+    }
+    .section {
+        padding: 100px 24px;
+    }
+    .section-header {
+        margin-bottom: 50px;
+    }
+    .product-grid { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+    }
+    .product-card { 
+        padding: 40px 24px; 
+        min-height: auto; 
+    }
+    .product-meta h3 {
+        font-size: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .product-img-wrapper {
+        height: 220px;
+    }
+    .about-layout { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    .footer-main { 
+        flex-direction: column; 
+        gap: 40px; 
+    }
+    .footer-address { 
+        text-align: left; 
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
 }
