@@ -142,8 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let isOverAnyElement = false;
         const cursorRadius = 32.5; 
 
-        // Adicionado .hero-subtitle, .product-card p e .about-text p para mapear cirurgicamente os blocos de texto comuns do layout
-        const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .product-card p, .section-title, .product-meta h3, .about-text p');
+        // Rastreamento explícito por classe aplicada para isolar totalmente os vazios das caixas das soluções
+        const interactiveElements = document.querySelectorAll('a, button, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .znt-hover-target, .about-text p');
 
         interactiveElements.forEach(el => {
             const rect = el.getBoundingClientRect();
