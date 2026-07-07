@@ -112,44 +112,70 @@ document.addEventListener("DOMContentLoaded", () => {
             glow.style.transform = `translate(${x}px, ${y}px)`;
         }
     });
-});
-const cursor = document.querySelector('.custom-cursor');
-const cursorDot = document.querySelector('.custom-cursor-dot');
 
-let mouseX = 0, mouseY = 0;
-let ballX = 0, ballY = 0;
-const speed = 0.15; 
+    // 7. Lógica Avançada do Cursor Customizado com Cálculo de Área Total de Borda
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.custom-cursor-dot');
 
-window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    if (cursorDot) {
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-    }
-});
+    let mouseX = 0, mouseY = 0;
+    let ballX = 0, ballY = 0;
+    const speed = 0.15; 
 
-function animateCursor() {
-    ballX += (mouseX - ballX) * speed;
-    ballY += (mouseY - ballY) * speed;
-    
-    if (cursor) {
-        cursor.style.left = `${ballX}px`;
-        cursor.style.top = `${ballY}px`;
-    }
-    
-    requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, h1, h2, h3, p, span');
-
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        document.body.classList.add('cursor-hover');
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (cursorDot) {
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        }
     });
-    el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('cursor-hover');
-    });
+
+    // Elementos que ativam a inversão e expansão
+    const interactiveElements = document.querySelectorAll('a, button, .product-card, .cta-button, .logo-container, h1, h2, h3, p, span');
+
+    function animateCursor() {
+        // Movimentação fluida baseada na física do rastro (lerp)
+        ballX += (mouseX - ballX) * speed;
+        ballY += (mouseY - ballY) * speed;
+        
+        if (cursor) {
+            cursor.style.left = `${ballX}px`;
+            cursor.style.top = `${ballY}px`;
+        }
+
+        // Verifica se a área externa do círculo maior está intersectando qualquer elemento interativo
+        let isOverAnyElement = false;
+        
+        // Define o raio máximo do círculo expandido (65px de largura / 2 = 32.5px de raio)
+        const cursorRadius = 32.5; 
+
+        interactiveElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+
+            // Calcula se o círculo maior encosta ou está sobre o retângulo do elemento
+            const closestX = Math.max(rect.left, Math.min(ballX, rect.right));
+            const closestY = Math.max(rect.top, Math.min(ballY, rect.bottom));
+
+            const distanceX = ballX - closestX;
+            const distanceY = ballY - closestY;
+
+            const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+            // Se a distância for menor que o raio do círculo, há colisão física real da área
+            if (distanceSquared < (cursorRadius * cursorRadius)) {
+                isOverAnyElement = true;
+            }
+        });
+
+        // Altera o estado do cursor considerando a área total expandida
+        if (isOverAnyElement) {
+            document.body.classList.add('cursor-hover');
+        } else {
+            document.body.classList.remove('cursor-hover');
+        }
+        
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
 });
