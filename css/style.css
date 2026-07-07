@@ -587,3 +587,61 @@ footer {
         text-align: center;
     }
 }
+/* Custom Cursor Style com Efeito Negativo (Inversão) */
+.custom-cursor, .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+}
+
+/* O círculo externo (Sempre aplicando o efeito de inversão sobre qualquer elemento) */
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(246, 248, 247, 0.4);
+    background-color: transparent;
+    mix-blend-mode: difference;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* A bolinha interna */
+.custom-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-on-primary);
+    mix-blend-mode: difference;
+}
+
+/* Estado de Hover: O círculo expande e fica totalmente branco sólido por dentro.
+   Com o mix-blend-mode, isso faz a área exata sob o círculo ficar com a cor invertida (negativo). */
+body.cursor-hover .custom-cursor {
+    width: 65px;
+    height: 65px;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.cursor-hover .custom-cursor-dot {
+    opacity: 0;
+}
+
+/* Remove o cursor customizado em dispositivos móveis e restaura o padrão */
+@media (max-width: 968px) {
+    .custom-cursor, .custom-cursor-dot {
+        display: none !important;
+    }
+    * {
+        cursor: auto !important;
+    }
+}
+
+/* Desativa o cursor padrão do navegador apenas no Desktop */
+@media (min-width: 969px) {
+    html, body, a, button, .product-card, .cta-button, .logo-container {
+        cursor: none !important;
+    }
+}
