@@ -451,6 +451,120 @@ nav a:hover::after {
     margin-bottom: 40px;
 }
 
+/* Nova Área de Contato Isolada Premium */
+.contact-section {
+    padding: 140px 10%;
+    background-color: var(--primary);
+    border-top: 1px solid rgba(246, 248, 247, 0.05);
+    position: relative;
+    z-index: 2;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.contact-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-headline .section-title {
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.contact-subtext {
+    font-family: var(--font-zenith);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 0.6;
+    max-width: 440px;
+}
+
+.contact-form-container {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(246, 248, 247, 0.06);
+    padding: 50px;
+    border-radius: 24px;
+}
+
+.znt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.znt-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.znt-input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos de input estritamente protegidos para não quebrar o footer */
+.znt-input-group input,
+.znt-input-group textarea {
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(246, 248, 247, 0.2) !important;
+    padding: 12px 0px !important;
+    font-family: var(--font-zenith) !important;
+    font-size: 14px !important;
+    color: var(--text-on-primary) !important;
+    outline: none !important;
+    transition: border-color 0.4s ease !important;
+}
+
+.znt-input-group textarea {
+    height: 90px !important;
+    resize: none !important;
+}
+
+.znt-input-group label {
+    position: absolute !important;
+    left: 0 !important;
+    top: 12px !important;
+    font-family: var(--font-zenith) !important;
+    font-size: 13px !important;
+    color: rgba(246, 248, 247, 0.4) !important;
+    pointer-events: none !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease !important;
+    transform-origin: left top !important;
+}
+
+/* Animações Flutuantes Premium dos Inputs */
+.znt-input-group input:focus ~ label,
+.znt-input-group input:not(:placeholder-shown) ~ label,
+.znt-input-group textarea:focus ~ label,
+.znt-input-group textarea:not(:placeholder-shown) ~ label {
+    transform: translateY(-24px) scale(0.85) !important;
+    color: var(--text-on-primary) !important;
+    opacity: 0.9 !important;
+}
+
+.znt-input-group input:focus,
+.znt-input-group textarea:focus {
+    border-bottom-color: var(--text-on-primary) !important;
+}
+
+.znt-submit-btn {
+    align-self: flex-start;
+    border: none;
+    padding: 16px 36px;
+}
+
 /* Footer */
 footer {
     padding: 80px 10% 40px 10%;
@@ -572,6 +686,16 @@ footer {
         grid-template-columns: 1fr; 
         gap: 40px; 
     }
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .znt-form-row {
+        grid-template-columns: 1fr;
+    }
+    .contact-form-container {
+        padding: 30px 20px;
+    }
     .footer-main { 
         flex-direction: column; 
         gap: 40px; 
@@ -595,8 +719,6 @@ footer {
     pointer-events: none;
     z-index: 9999;
     border-radius: 50%;
-    
-    /* MODIFICADO: Começa invisível para evitar o rastro inicial vindo do topo esquerdo */
     opacity: 0;
     transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
@@ -616,7 +738,6 @@ footer {
     mix-blend-mode: difference;
 }
 
-/* Classe controlada por JS para exibir o ponteiro de forma elegante ao mover o mouse */
 body.cursor-visible .custom-cursor,
 body.cursor-visible .custom-cursor-dot {
     opacity: 1;
@@ -643,7 +764,7 @@ body.cursor-hover .custom-cursor-dot {
 }
 
 @media (min-width: 969px) {
-    html, body, a, button, .product-img-wrapper, .cta-button, .logo-container, .znt-hover-target {
+    html, body, a, button, .product-img-wrapper, .cta-button, .logo-container, .znt-hover-target, .znt-input-group input, .znt-input-group textarea {
         cursor: none !important;
     }
 }
