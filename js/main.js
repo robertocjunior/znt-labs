@@ -154,17 +154,21 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        let isOverAnyElement = false;
+        let isOverHoverElement = false;
+        let isOverTextElement = false;
         const cursorRadius = 32.5; 
 
-        const interactiveElements = document.querySelectorAll('a, button, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .znt-hover-target, .about-text p');
+        // Separando elementos clicáveis comuns de elementos de entrada de texto
+        const hoverElements = document.querySelectorAll('a, button, .cta-button, .logo-container, .hero-title, .hero-slogan, .hero-subtitle, .znt-hover-target, .about-text p');
+        const textElements = document.querySelectorAll('.znt-input-group input, .znt-input-group textarea');
 
         if (CONFIG.CURSOR_DEBUG) {
             debugContainers.forEach(div => div.remove());
             debugContainers = [];
         }
 
-        interactiveElements.forEach(el => {
+        // Função auxiliar para verificar colisão com tolerância
+        function checkCollision(el, callbackInRadius) {
             const rect = el.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) return;
 
@@ -181,16 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // Se não bateu com nenhum seletor do config, gera um nome amigável para debug baseado nas classes ou tag
             if (!identifiedSelector) {
-                if (el.className) {
-                    identifiedSelector = "." + Array.from(el.classList).join('.');
-                } else {
-                    identifiedSelector = el.tagName.toLowerCase();
-                }
+                identifiedSelector = el.className ? "." + Array.from(el.classList).join('.') : el.tagName.toLowerCase();
             }
 
-            // Descobre se tem chave de tradução associada para exibir junto ao nome
             const dataTextAttr = el.getAttribute('data-text');
             const debugLabelText = dataTextAttr ? `${identifiedSelector} [${dataTextAttr}]` : identifiedSelector;
 
@@ -213,7 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 debugDiv.style.width = `${expandedRect.right - expandedRect.left}px`;
                 debugDiv.style.height = `${expandedRect.bottom - expandedRect.top}px`;
 
-                // Cria o rótulo com texto descritivo inline
                 const label = document.createElement('span');
                 label.style.position = 'absolute';
                 label.style.top = '-16px';
@@ -237,18 +234,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const distanceX = ballX - closestX;
             const distanceY = ballY - closestY;
-
             const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
             if (distanceSquared < (cursorRadius * cursorRadius)) {
-                isOverAnyElement = true;
+                callbackInRadius();
             }
+        }
+
+        // Valida elementos comuns (expandir cursor)
+        hoverElements.forEach(el => {
+            checkCollision(el, () => { isOverHoverElement = true; });
         });
 
-        if (isOverAnyElement) {
+        // Valida campos de texto (mudar para formato I-beam)
+        textElements.forEach(el => {
+            checkCollision(el, () => { isOverTextElement = true; });
+        });
+
+        // Gerencia classes de estado no body
+        if (isOverHoverElement) {
             document.body.classList.add('cursor-hover');
         } else {
             document.body.classList.remove('cursor-hover');
+        }
+
+        if (isOverTextElement) {
+            document.body.classList.add('cursor-text-mode');
+        } else {
+            document.body.classList.remove('cursor-text-mode');
         }
         
         requestAnimationFrame(animateCursor);
