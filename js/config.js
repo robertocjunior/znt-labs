@@ -53,6 +53,7 @@ const CONFIG = {
             MAIL: "E-mail Corporativo",
             PHONE: "WhatsApp / Telefone",
             DESC: "Descrição do Projeto / Mensagem",
+            COMPANY: "Nome da Empresa",
             BTN: "ENVIAR"
         }
     },
