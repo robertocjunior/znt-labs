@@ -7,7 +7,6 @@ const CONFIG = {
         ".hero-slogan": { top: 6, right: 12, bottom: 35, left: 12 },
         ".hero-title":  { top: 10, right: 10, bottom: 10, left: 10 },
         ".cta-button":  { top: 5, right: 5, bottom: 5, left: 5 },
-        // Você pode adicionar qualquer seletor aqui para dar tolerâncias personalizadas:
         ".section-title": { top: 0, right: 0, bottom: 0, left: 0 }
     },
 
@@ -44,6 +43,18 @@ const CONFIG = {
         TITLE: "Tecnologia sob medida",
         P1: "Na ZENITH LABS, nós transformamos complexidade em eficiência. Desenhamos arquiteturas robustas e integrações fluidas que eliminam as falhas e as barreiras do seu dia a dia.",
         P2: "Nossa filosofia une um visual extremamente limpo a uma engenharia focada em entregar o máximo de desempenho para empresas que não podem parar."
+    },
+    CONTACT: {
+        TAG: "CONEXÃO // OPERACIONAL",
+        TITLE: "PRONTO PARA IMPULSIONAR SUA OPERAÇÃO?",
+        SUB: "Envie sua demanda técnica. Para analisarmos a integração ideal para o ecossistema do seu negócio.",
+        FORM: {
+            NAME: "Nome Completo",
+            MAIL: "E-mail Corporativo",
+            PHONE: "WhatsApp / Telefone",
+            DESC: "Descrição do Projeto / Mensagem",
+            BTN: "ENVIAR"
+        }
     },
     FOOTER: {
         SUBTITLE: "Engenharia de Softwares & Integrações",
