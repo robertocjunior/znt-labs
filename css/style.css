@@ -720,7 +720,7 @@ footer {
     z-index: 9999;
     border-radius: 50%;
     opacity: 0;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-radius 0.3s ease, background-color 0.3s ease;
 }
 
 .custom-cursor {
@@ -743,6 +743,7 @@ body.cursor-visible .custom-cursor-dot {
     opacity: 1;
 }
 
+/* Estado de Hover comum (Aumenta e preenche) */
 body.cursor-hover .custom-cursor {
     width: 65px;
     height: 65px;
@@ -752,6 +753,19 @@ body.cursor-hover .custom-cursor {
 
 body.cursor-hover .custom-cursor-dot {
     opacity: 0;
+}
+
+/* MODO TEXTO: Transforma o cursor externo em um I-beam vertical fluido e estilizado */
+body.cursor-text-mode .custom-cursor {
+    width: 2px !important;
+    height: 24px !important;
+    background-color: var(--text-on-primary) !important;
+    border-color: transparent !important;
+    border-radius: 4px !important;
+}
+
+body.cursor-text-mode .custom-cursor-dot {
+    opacity: 0 !important;
 }
 
 @media (max-width: 968px) {
