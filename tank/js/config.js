@@ -15,5 +15,5 @@ const THANK_YOU_CONFIG = {
     SUBTITLE: "Sua demanda técnica foi recebida com sucesso. Alguem do nosso time irá entrar em contato para oferecer a melhor integração para o seu ecossistema corporativo.",
     BTN_TEXT: "Voltar ao início",
     TARGET_URL: "https://www.zntlabs.com.br/",
-    REDIRECT_TIMEOUT: 5000 // Tempo em milissegundos (5 segundos)
+    REDIRECT_TIMEOUT: 4000 // Tempo em milissegundos (5 segundos)
 };
