@@ -245,6 +245,13 @@ nav a:hover::after {
     animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
 .cta-button {
     background-color: var(--text-on-primary);
     color: var(--primary);
@@ -266,10 +273,25 @@ nav a:hover::after {
     gap: 8px;
 }
 
+/* Botão Secundário Minimalista de Contato */
+.cta-button.secondary {
+    background-color: transparent;
+    color: var(--text-on-primary);
+    border: 1px solid rgba(246, 248, 247, 0.2);
+    box-shadow: none;
+}
+
 .cta-button:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 20px 40px rgba(246, 248, 247, 0.2);
     background-color: #fff;
+    color: var(--primary);
+}
+
+.cta-button.secondary:hover {
+    background-color: var(--text-on-primary);
+    color: var(--primary);
+    border-color: var(--text-on-primary);
 }
 
 .scroll-indicator {
@@ -458,6 +480,7 @@ nav a:hover::after {
     border-top: 1px solid rgba(246, 248, 247, 0.05);
     position: relative;
     z-index: 2;
+    scroll-margin-top: 5vh;
 }
 
 .contact-layout {
@@ -658,6 +681,15 @@ footer {
         letter-spacing: 6px;
         padding: 10px 0;
         margin-bottom: 0;
+    }
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+    .cta-button {
+        width: 100%;
+        justify-content: center;
     }
     .section {
         padding: 100px 24px;
