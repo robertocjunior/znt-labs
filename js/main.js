@@ -73,11 +73,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const navLinkContato = document.getElementById('navLinkContato');
+    if (navLinkContato) {
+        navLinkContato.addEventListener('click', (e) => {
+            e.preventDefault();
+            lenis.scrollTo('#contato', { duration: 1.2 });
+        });
+    }
+
     const ctaBtn = document.getElementById('ctaBtn');
     if (ctaBtn) {
         ctaBtn.addEventListener('click', (e) => {
             e.preventDefault();
             lenis.scrollTo('#solucoes', { duration: 1.2 });
+        });
+    }
+
+    const ctaContactBtn = document.getElementById('ctaContactBtn');
+    if (ctaContactBtn) {
+        ctaContactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            lenis.scrollTo('#contato', { duration: 1.2 });
         });
     }
 
