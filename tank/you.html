@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Transmitidos // ZENITH Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+    <div class="ambient-glow"></div>
+
+    <svg class="hero-vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+        <line x1="80" y1="0" x2="80" y2="900" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+        <line x1="1360" y1="0" x2="1360" y2="900" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+        <line x1="0" y1="120" x2="1440" y2="120" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+        <line x1="0" y1="780" x2="1440" y2="780" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.04" />
+        <path d="M75 120H85M80 115V125" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+        <path d="M1355 120H1365M1360 115V125" stroke="#F6F8F7" stroke-width="1" stroke-opacity="0.2"/>
+        <text x="95" y="145" fill="#F6F8F7" fill-opacity="0.2" font-family="monospace" font-size="10" letter-spacing="1">SYS.STATUS // OK</text>
+    </svg>
+
+    <div class="thank-you-container">
+        <span class="status-tag" data-text="STATUS_TAG"></span>
+        <h1 class="title" data-text="TITLE"></h1>
+        <p class="subtitle" data-text="SUBTITLE"></p>
+        
+        <a href="https://www.zntlabs.com.br/" class="redirect-button" id="backBtn">
+            <div class="button-content">
+                <span data-text="BTN_TEXT"></span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.33334 8H12.6667M12.6667 8L8 3.33334M12.6667 8L8 12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="progress-bar-fill"></div>
+        </a>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
