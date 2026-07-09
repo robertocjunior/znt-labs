@@ -15,11 +15,13 @@ const CONFIG = {
         SLOGAN: "REACH THE TOP"
     },
     NAV: {
-        SOLUCOES: "Soluções"
+        SOLUCOES: "Soluções",
+        CONTATO: "Contato"
     },
     HERO: {
         SUBTITLE: "Elevando o potencial do seu negócio através de tecnologias robustas, automações eficientes e integrações inteligentes.",
         CTA: "Conhecer Soluções",
+        CTA_CONTACT: "Entrar em Contato",
         INDICATOR: "Scroll para explorar"
     },
     SOLUCOES: {
