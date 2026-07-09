@@ -71,6 +71,7 @@ body {
     letter-spacing: -1px;
     line-height: 1.1;
     margin-bottom: 25px;
+    display: inline-block;
 }
 
 .subtitle {
@@ -79,6 +80,7 @@ body {
     opacity: 0.7;
     line-height: 1.6;
     margin-bottom: 50px;
+    display: inline-block;
 }
 
 /* Botão Premium Estático com Inversão Real e Efeito Apenas de Glow */
@@ -185,4 +187,4 @@ body.cursor-hover .custom-cursor-dot {
 }
 @media (min-width: 969px) {
     html, body, a, button, .redirect-button { cursor: none !important; }
-}
+}   
